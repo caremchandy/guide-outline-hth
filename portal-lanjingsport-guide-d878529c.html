@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蓝鲸体育 · 信息卡片式介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', 'Noto Sans SC', sans-serif;
+            background-color: #f7f8fa;
+            color: #1e2a3a;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .page {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 3.5rem 1.8rem 4rem;
+        }
+
+        /* 主视觉 —— 简洁衬底卡片 */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.8rem 2.2rem 2.4rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02), 0 1px 4px rgba(0, 20, 50, 0.04);
+            margin-bottom: 2.8rem;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+        .hero-tag {
+            display: inline-block;
+            background: #eef3fa;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+            font-weight: 500;
+            color: #2c4b6e;
+            padding: 0.25rem 0.9rem;
+            border-radius: 40px;
+            margin-bottom: 1.2rem;
+        }
+        .hero-card h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+        .hero-card h1 small {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #5c6f87;
+            margin-left: 0.25rem;
+        }
+        .hero-sub {
+            font-size: 1.05rem;
+            color: #3f536e;
+            max-width: 90%;
+            margin-bottom: 1.5rem;
+        }
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #5f738d;
+        }
+        .hero-meta span {
+            background: #f1f4f9;
+            padding: 0.15rem 0.9rem;
+            border-radius: 40px;
+        }
+
+        /* 通用卡片 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            margin-top: 1.2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 1.8rem 2rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 20, 40, 0.04);
+        }
+        .card-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #8a9bb0;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid #e6ecf3;
+            padding-bottom: 0.3rem;
+        }
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin: 0.2rem 0 0.75rem 0;
+            line-height: 1.3;
+        }
+        .card p {
+            margin-bottom: 0.8rem;
+            color: #2f4057;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.8rem 0 0.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.9rem;
+        }
+        .card ul li {
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        .card ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #6f8aaa;
+            font-weight: 700;
+        }
+
+        /* 自然链接段落 + faq */
+        .text-block {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 1.8rem 2rem 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            margin-top: 0.2rem;
+        }
+        .text-block h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e2a3a;
+        }
+        .text-block p {
+            font-size: 0.98rem;
+            margin-bottom: 0.8rem;
+            color: #374b63;
+        }
+        .text-block a {
+            color: #1f5380;
+            text-decoration: none;
+            border-bottom: 1px solid #cbdae9;
+            font-weight: 500;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .text-block a:hover {
+            border-bottom-color: #1f5380;
+            color: #0b2c4a;
+        }
+        .faq-item {
+            margin-top: 1.4rem;
+            padding-top: 1rem;
+            border-top: 1px solid #edf1f7;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.15rem;
+        }
+        .faq-item p {
+            font-size: 0.94rem;
+            color: #405773;
+            margin-bottom: 0.2rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e5eaef;
+            margin: 2rem 0 1rem;
+        }
+
+        .footnote {
+            font-size: 0.85rem;
+            color: #7188a2;
+            text-align: center;
+            margin-top: 2.5rem;
+            border-top: 1px solid #e3e9f0;
+            padding-top: 1.8rem;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 520px) {
+            .page {
+                padding: 2rem 1.2rem 3rem;
+            }
+            .hero-card {
+                padding: 2rem 1.4rem 1.8rem;
+            }
+            .hero-card h1 {
+                font-size: 1.8rem;
+            }
+            .card, .text-block {
+                padding: 1.5rem 1.4rem 1.7rem;
+            }
+            .card ul {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+        <div class="hero-tag">✦ 信息卡片 · 主题展开</div>
+        <h1>蓝鲸体育<small> · 运动日常</small></h1>
+        <div class="hero-sub">从一片水域到一座球场，从晨间慢跑到周末力量训练——蓝鲸体育所关注的，是让运动回归生活，不刻意，也不将就。</div>
+        <div class="hero-meta">
+            <span>🏃 有氧 · 力量 · 球类</span>
+            <span>🧭 个人 / 社群</span>
+            <span>📋 场景化内容</span>
+        </div>
+    </div>
+
+    <!-- 用途卡片 + 适合人群卡片 (两卡片并排但保持窄宽，故垂直) -->
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-label">用途 · 场景</div>
+            <h2>训练笔记 · 活动记录 · 运动参考</h2>
+            <p>蓝鲸体育提供轻量的运动信息聚合，可以用于：个人训练计划参考、团队活动路线记录、运动技能入门笔记。没有复杂的课程表，更像是运动伙伴之间的经验共享。</p>
+            <ul>
+                <li>跑步 / 骑行路线与心得</li>
+                <li>游泳、球类技巧备忘</li>
+                <li>力量训练基础动作拆解</li>
+                <li>运动恢复与饮食小贴士</li>
+            </ul>
+            <p style="margin-top: 0.6rem; font-size: 0.95rem;">无论你是刚起步还是已经保持规律运动，都能找到贴近自己节奏的内容。</p>
+        </div>
+
+        <div class="card">
+            <div class="card-label">适合 · 人群</div>
+            <h2>上班族 · 学生 · 运动爱好者</h2>
+            <p>蓝鲸体育的内容面向那些希望把运动融入生活、而非把它当作负担的人。利用零散时间活动身体，或是周末约上朋友打一场球、游一次泳。不追求极限，但看重持续。</p>
+            <ul>
+                <li>久坐办公室、想找回身体活力的人</li>
+                <li>在校学生，尝试建立运动习惯</li>
+                <li>已经有运动基础，希望拓展新项目</li>
+                <li>关注运动安全与基础营养的普通爱好者</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 + FAQ 摘要 混合 -->
+    <div class="text-block">
+        <h3>从“蓝鲸体育”出发 · 运动不必复杂</h3>
+        <p>很多时候我们不是不想动，而是不知道从哪开始。蓝鲸体育的页面里没有推销式的口号，只有真实的活动记录、场地推荐以及训练思路。你可以通过 <a href="https://portal-lanjingsport.com">蓝鲸体育</a> 浏览不同运动的基础介绍，也可以把它当作一个运动灵感的汇集处——看看别人是怎么在日常里挤出时间、保持动力的。</p>
+        <p>页面内容通常涉及：城市慢跑路线、游泳技巧备忘、羽毛球或篮球的简单战术、以及运动后的拉伸建议。没有硬核推销，适合安静地翻看。</p>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-item">
+            <strong>❓ 蓝鲸体育适合完全没运动基础的人吗？</strong>
+            <p>适合。很多内容从零开始讲述，比如如何选择第一双跑鞋、蛙泳换气要点、徒手力量训练从哪几个动作开始。不需要有压力。</p>
+        </div>
+        <div class="faq-item">
+            <strong>❓ 内容更新频率如何？</strong>
+            <p>蓝鲸体育保持稳定的更新节奏，但更注重内容质量。每次更新通常围绕一个具体运动场景展开，篇幅精炼。</p>
+        </div>
+        <div class="faq-item">
+            <strong>❓ 是否有社群或线下活动信息？</strong>
+            <p>部分内容会提及同城约跑或球友招募，但以信息分享为主，具体参与请自行判断并注意安全。</p>
+        </div>
+    </div>
+
+    <hr>
+    <div class="footnote">
+        <span>蓝鲸体育 · 信息卡片页</span><br>
+        <span style="opacity: 0.6;">运动是日常，不是任务。</span>
+    </div>
+</div>
+</body>
+</html>
